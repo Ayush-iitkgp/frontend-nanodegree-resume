@@ -2,20 +2,52 @@
 //var funThoughts = awesomeThoughts.replace("awesome","fun");
 //var formattedName =HTMLheaderName.replace("%data%","Ayush Pandey");
 //var formattedRole= HTMLheaderRole.replace("%data%","Budding Data Scientist");
-//$("#header").prepend(formattedName).append(formattedRole);
+//$("#header").prepend(formattedName).prepend(formattedRole);
 // var bool = true;
-
-
 //$("#header").append(funThoughts);
-
 //$("#main").prepend(bio.name).prepend(" ").prepend(bio.roll).prepend(" ").prepend(bio.contact.mobile).prepend(" ").prepend(bio.msg).prepend(" ").prepend(bio.picURL).prepend(" ").prepend(bio.skill);
 //console.log(bio);
-
-
 //$("#main").append(work.jobPosition).append(work.employer).append(work.yearsWorked).append(work.cityOfBusiness);
 //console.log(work);
 //$("#main").append(education["lastSchool"]).append(education["yearsAttended"]).append(education["schoolCity"]);
 //console.log(education);
+
+
+// BIO SECTION
+var bio = {
+	"name":"Ayush Pandey",
+	"role" : "Budding Data Scientist",
+	"contact":{
+		"mobile":"+91-9649466797",
+		"email":"ayushpandey.iitkgp@gmail.com",
+		"github":"ayushpandey-iitkgp.github.io",
+		"Address":"Nehru Vihar"
+		},
+	"msg":"Hi everyone! Thank you very much for visiting my website",
+	"picURL":"images/fry.jpg",
+	"skill":["Data Analysis","Programming","Apache Hadoop", "Apche Spark"]
+};
+var formattedName =HTMLheaderName.replace("%data%",bio.name);
+var formattedRole= HTMLheaderRole.replace("%data%",bio.role);
+$("#header").prepend(formattedName).append(formattedRole);
+var formattedContact = HTMLcontactGeneric.replace("%data%","").replace("%contact%","");
+$("#header").append(formattedContact);
+var formattedMobile = HTMLmobile.replace("%data%",bio.contact.mobile);
+$(".orange-text:last").append(formattedMobile);
+if(bio.skill!=null){
+	//var formattedSkillsStart =HTMLskillsStart.replace("%data%",bio.skill);
+    
+	$("#header").append(HTMLskillsStart);
+	for(var i=0;i<bio.skill.length;i++){
+		var formattedSkills= HTMLskills.replace("%data%",bio.skill[i]);
+		
+		$("#skills").append(formattedSkills);
+		}
+	}
+
+	
+	
+/* BIO SECTION ENDS*/
 
 
 /* EDUCATION SECTIONS BEGINS */
@@ -60,33 +92,7 @@ var education={
 
 /* EDUCATION SCETIONS ENDS */
 
-// BIO SECTION
-var bio = {
-	"name":"Ayush Pandey",
-	"roll" : "12MA20009",
-	"contact":{
-		"mobile":"+91-9649466797",
-		"email":"ayushpandey.iitkgp@gmail.com",
-		"github":"ayushpandey-iitkgp.github.io",
-		"Address":"Nehru Vihar"
-		},
-	"msg":"Hi everyone! Thank you very much for visiting my website",
-	"picURL":"images/fry.jpg",
-	"skill":["Data Analysis","Programming","Apache Hadoop", "Apche Spark"]
-};
-if(bio.skill!=null){
-	//var formattedSkillsStart =HTMLskillsStart.replace("%data%",bio.skill);
-    
-	$("#header").append(HTMLskillsStart);
-	for(var i=0;i<bio.skill.length;i++){
-		var formattedSkills= HTMLskills.replace("%data%",bio.skill[i]);
-		
-		$("#skills").append(formattedSkills);
-		}
-	}
-	
-	
-/* BIO SECTION ENDS*/
+
 
 // WORK SECTION	
 var work = {
@@ -164,8 +170,10 @@ project.display = function(){
 
 project.display();
 
-
 /* PROJECT SECTION ENDS*/
+
+/* Adding Google Maps to the Resume*/
+$("#mapDiv").append(googleMap);
 
 
 
